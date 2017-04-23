@@ -1,4 +1,4 @@
-package com.torneo.fifa
+package com.caseritos
 
 class Player extends User{
 	

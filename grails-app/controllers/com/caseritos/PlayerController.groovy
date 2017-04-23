@@ -1,11 +1,9 @@
-package com.torneo.fifa
+package com.caseritos
 
 import static org.springframework.http.HttpStatus.*
-import org.apache.commons.lang.RandomStringUtils
 import org.apache.commons.logging.*
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
-import java.text.SimpleDateFormat
 
 @Transactional(readOnly = true)
 
@@ -18,7 +16,6 @@ class PlayerController {
 	
 	@Secured(['ROLE_ADMIN'])
     def index(Integer max) {
-		println "el admin"
         params.max = Math.min(max ?: 10, 100)
         respond Player.list(params), model:[playerInstanceCount: Player.count()]
     }
@@ -58,7 +55,7 @@ class PlayerController {
 
         if (playerInstance.hasErrors()) {
 			playerInstance.errors.allErrors.each {
-				println log.error "[save] Error Instancia con errores: "+it
+				log.error "[save] Error Instancia con errores: "+it
 			}
             respond playerInstance.errors, view:'create'
             return
@@ -81,7 +78,6 @@ class PlayerController {
 
 	@Secured(['permitAll'])
     def edit(Player playerInstance) {
-		println "EDITAR"
 		if(playerInstance.id == springSecurityService.getCurrentUser().id){
 			respond playerInstance
 		}else{
@@ -218,7 +214,6 @@ class PlayerController {
 	@Secured(['permitAll'])
 	@Transactional
 	def nuevoCodigo() {
-		println "Busqueda de usuario con EMAIL"
 		Player instancePlayer = Player.findByEmail(params.email)
 		if(!instancePlayer){
 			def mensaje = "El email ingresado se encuentra registrado."

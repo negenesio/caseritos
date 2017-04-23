@@ -1,13 +1,13 @@
-package com.torneo.fifa
+package com.caseritos
 
 
 
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(EstadoController)
-@Mock(Estado)
-class EstadoControllerSpec extends Specification {
+@TestFor(CruceController)
+@Mock(Cruce)
+class CruceControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
@@ -21,8 +21,8 @@ class EstadoControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.estadoInstanceList
-            model.estadoInstanceCount == 0
+            !model.cruceInstanceList
+            model.cruceInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -30,7 +30,7 @@ class EstadoControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.estadoInstance!= null
+            model.cruceInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
@@ -38,25 +38,25 @@ class EstadoControllerSpec extends Specification {
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
             request.method = 'POST'
-            def estado = new Estado()
-            estado.validate()
-            controller.save(estado)
+            def cruce = new Cruce()
+            cruce.validate()
+            controller.save(cruce)
 
         then:"The create view is rendered again with the correct model"
-            model.estadoInstance!= null
+            model.cruceInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            estado = new Estado(params)
+            cruce = new Cruce(params)
 
-            controller.save(estado)
+            controller.save(cruce)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/estado/show/1'
+            response.redirectedUrl == '/cruce/show/1'
             controller.flash.message != null
-            Estado.count() == 1
+            Cruce.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -68,11 +68,11 @@ class EstadoControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def estado = new Estado(params)
-            controller.show(estado)
+            def cruce = new Cruce(params)
+            controller.show(cruce)
 
         then:"A model is populated containing the domain instance"
-            model.estadoInstance == estado
+            model.cruceInstance == cruce
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -84,11 +84,11 @@ class EstadoControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def estado = new Estado(params)
-            controller.edit(estado)
+            def cruce = new Cruce(params)
+            controller.edit(cruce)
 
         then:"A model is populated containing the domain instance"
-            model.estadoInstance == estado
+            model.cruceInstance == cruce
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -98,28 +98,28 @@ class EstadoControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/estado/index'
+            response.redirectedUrl == '/cruce/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def estado = new Estado()
-            estado.validate()
-            controller.update(estado)
+            def cruce = new Cruce()
+            cruce.validate()
+            controller.update(cruce)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.estadoInstance == estado
+            model.cruceInstance == cruce
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            estado = new Estado(params).save(flush: true)
-            controller.update(estado)
+            cruce = new Cruce(params).save(flush: true)
+            controller.update(cruce)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/estado/show/$estado.id"
+            response.redirectedUrl == "/cruce/show/$cruce.id"
             flash.message != null
     }
 
@@ -130,23 +130,23 @@ class EstadoControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/estado/index'
+            response.redirectedUrl == '/cruce/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def estado = new Estado(params).save(flush: true)
+            def cruce = new Cruce(params).save(flush: true)
 
         then:"It exists"
-            Estado.count() == 1
+            Cruce.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(estado)
+            controller.delete(cruce)
 
         then:"The instance is deleted"
-            Estado.count() == 0
-            response.redirectedUrl == '/estado/index'
+            Cruce.count() == 0
+            response.redirectedUrl == '/cruce/index'
             flash.message != null
     }
 }

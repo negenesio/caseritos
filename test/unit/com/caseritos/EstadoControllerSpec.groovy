@@ -1,13 +1,13 @@
-package com.torneo.fifa
+package com.caseritos
 
 
 
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(JornadaController)
-@Mock(Jornada)
-class JornadaControllerSpec extends Specification {
+@TestFor(EstadoController)
+@Mock(Estado)
+class EstadoControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
@@ -21,8 +21,8 @@ class JornadaControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.jornadaInstanceList
-            model.jornadaInstanceCount == 0
+            !model.estadoInstanceList
+            model.estadoInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -30,7 +30,7 @@ class JornadaControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.jornadaInstance!= null
+            model.estadoInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
@@ -38,25 +38,25 @@ class JornadaControllerSpec extends Specification {
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
             request.method = 'POST'
-            def jornada = new Jornada()
-            jornada.validate()
-            controller.save(jornada)
+            def estado = new Estado()
+            estado.validate()
+            controller.save(estado)
 
         then:"The create view is rendered again with the correct model"
-            model.jornadaInstance!= null
+            model.estadoInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            jornada = new Jornada(params)
+            estado = new Estado(params)
 
-            controller.save(jornada)
+            controller.save(estado)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/jornada/show/1'
+            response.redirectedUrl == '/estado/show/1'
             controller.flash.message != null
-            Jornada.count() == 1
+            Estado.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -68,11 +68,11 @@ class JornadaControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def jornada = new Jornada(params)
-            controller.show(jornada)
+            def estado = new Estado(params)
+            controller.show(estado)
 
         then:"A model is populated containing the domain instance"
-            model.jornadaInstance == jornada
+            model.estadoInstance == estado
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -84,11 +84,11 @@ class JornadaControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def jornada = new Jornada(params)
-            controller.edit(jornada)
+            def estado = new Estado(params)
+            controller.edit(estado)
 
         then:"A model is populated containing the domain instance"
-            model.jornadaInstance == jornada
+            model.estadoInstance == estado
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -98,28 +98,28 @@ class JornadaControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/jornada/index'
+            response.redirectedUrl == '/estado/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def jornada = new Jornada()
-            jornada.validate()
-            controller.update(jornada)
+            def estado = new Estado()
+            estado.validate()
+            controller.update(estado)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.jornadaInstance == jornada
+            model.estadoInstance == estado
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            jornada = new Jornada(params).save(flush: true)
-            controller.update(jornada)
+            estado = new Estado(params).save(flush: true)
+            controller.update(estado)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/jornada/show/$jornada.id"
+            response.redirectedUrl == "/estado/show/$estado.id"
             flash.message != null
     }
 
@@ -130,23 +130,23 @@ class JornadaControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/jornada/index'
+            response.redirectedUrl == '/estado/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def jornada = new Jornada(params).save(flush: true)
+            def estado = new Estado(params).save(flush: true)
 
         then:"It exists"
-            Jornada.count() == 1
+            Estado.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(jornada)
+            controller.delete(estado)
 
         then:"The instance is deleted"
-            Jornada.count() == 0
-            response.redirectedUrl == '/jornada/index'
+            Estado.count() == 0
+            response.redirectedUrl == '/estado/index'
             flash.message != null
     }
 }

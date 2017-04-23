@@ -1,4 +1,4 @@
-package com.torneo.fifa
+package com.caseritos
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification

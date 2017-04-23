@@ -1,4 +1,4 @@
-package com.torneo.fifa
+package com.caseritos
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString

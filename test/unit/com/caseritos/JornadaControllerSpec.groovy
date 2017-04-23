@@ -1,13 +1,13 @@
-package com.torneo.fifa
+package com.caseritos
 
 
 
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(TorneoRegistracionController)
-@Mock(TorneoRegistracion)
-class TorneoRegistracionControllerSpec extends Specification {
+@TestFor(JornadaController)
+@Mock(Jornada)
+class JornadaControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
@@ -21,8 +21,8 @@ class TorneoRegistracionControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.torneoRegistracionInstanceList
-            model.torneoRegistracionInstanceCount == 0
+            !model.jornadaInstanceList
+            model.jornadaInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -30,7 +30,7 @@ class TorneoRegistracionControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.torneoRegistracionInstance!= null
+            model.jornadaInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
@@ -38,25 +38,25 @@ class TorneoRegistracionControllerSpec extends Specification {
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
             request.method = 'POST'
-            def torneoRegistracion = new TorneoRegistracion()
-            torneoRegistracion.validate()
-            controller.save(torneoRegistracion)
+            def jornada = new Jornada()
+            jornada.validate()
+            controller.save(jornada)
 
         then:"The create view is rendered again with the correct model"
-            model.torneoRegistracionInstance!= null
+            model.jornadaInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            torneoRegistracion = new TorneoRegistracion(params)
+            jornada = new Jornada(params)
 
-            controller.save(torneoRegistracion)
+            controller.save(jornada)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/torneoRegistracion/show/1'
+            response.redirectedUrl == '/jornada/show/1'
             controller.flash.message != null
-            TorneoRegistracion.count() == 1
+            Jornada.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -68,11 +68,11 @@ class TorneoRegistracionControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def torneoRegistracion = new TorneoRegistracion(params)
-            controller.show(torneoRegistracion)
+            def jornada = new Jornada(params)
+            controller.show(jornada)
 
         then:"A model is populated containing the domain instance"
-            model.torneoRegistracionInstance == torneoRegistracion
+            model.jornadaInstance == jornada
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -84,11 +84,11 @@ class TorneoRegistracionControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def torneoRegistracion = new TorneoRegistracion(params)
-            controller.edit(torneoRegistracion)
+            def jornada = new Jornada(params)
+            controller.edit(jornada)
 
         then:"A model is populated containing the domain instance"
-            model.torneoRegistracionInstance == torneoRegistracion
+            model.jornadaInstance == jornada
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -98,28 +98,28 @@ class TorneoRegistracionControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/torneoRegistracion/index'
+            response.redirectedUrl == '/jornada/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def torneoRegistracion = new TorneoRegistracion()
-            torneoRegistracion.validate()
-            controller.update(torneoRegistracion)
+            def jornada = new Jornada()
+            jornada.validate()
+            controller.update(jornada)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.torneoRegistracionInstance == torneoRegistracion
+            model.jornadaInstance == jornada
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            torneoRegistracion = new TorneoRegistracion(params).save(flush: true)
-            controller.update(torneoRegistracion)
+            jornada = new Jornada(params).save(flush: true)
+            controller.update(jornada)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/torneoRegistracion/show/$torneoRegistracion.id"
+            response.redirectedUrl == "/jornada/show/$jornada.id"
             flash.message != null
     }
 
@@ -130,23 +130,23 @@ class TorneoRegistracionControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/torneoRegistracion/index'
+            response.redirectedUrl == '/jornada/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def torneoRegistracion = new TorneoRegistracion(params).save(flush: true)
+            def jornada = new Jornada(params).save(flush: true)
 
         then:"It exists"
-            TorneoRegistracion.count() == 1
+            Jornada.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(torneoRegistracion)
+            controller.delete(jornada)
 
         then:"The instance is deleted"
-            TorneoRegistracion.count() == 0
-            response.redirectedUrl == '/torneoRegistracion/index'
+            Jornada.count() == 0
+            response.redirectedUrl == '/jornada/index'
             flash.message != null
     }
 }

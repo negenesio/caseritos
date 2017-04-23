@@ -1,17 +1,12 @@
-package com.torneo.fifa
+package com.caseritos
 
-import static org.springframework.http.HttpStatus.*
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
-import com.torneo.fifa.Player
-
 class CuentaController {
 	def mailService
-	def springSecurityService
 
 	def index() { }
-
 
 	//Solicita usuario y Email. envia los datos a : recuperarClave
 	@Secured(['permitAll'])
@@ -69,7 +64,7 @@ class CuentaController {
 		mailService.sendMail {
 			multipart true
 			to instancePlayer.email
-			subject "TORNEO MELI - RECUPERAR PASSWORD"
+			subject "CASERITOS SANWICHES - RECUPERAR PASSWORD"
 			html g.render(template:'/mail/recuperarClave', model:[instancePlayer:instancePlayer, password:instancePlayer.password, codigo:codigo])
 			inline 'springsourceInlineImage', 'image/jpg', new File('./web-app/images/banner_caseritos.jpg')
 		}

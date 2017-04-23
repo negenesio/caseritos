@@ -1,13 +1,13 @@
-package com.torneo.fifa
+package com.caseritos
 
 
 
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(CruceController)
-@Mock(Cruce)
-class CruceControllerSpec extends Specification {
+@TestFor(TorneoRegistracionController)
+@Mock(TorneoRegistracion)
+class TorneoRegistracionControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
@@ -21,8 +21,8 @@ class CruceControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.cruceInstanceList
-            model.cruceInstanceCount == 0
+            !model.torneoRegistracionInstanceList
+            model.torneoRegistracionInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -30,7 +30,7 @@ class CruceControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.cruceInstance!= null
+            model.torneoRegistracionInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
@@ -38,25 +38,25 @@ class CruceControllerSpec extends Specification {
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
             request.method = 'POST'
-            def cruce = new Cruce()
-            cruce.validate()
-            controller.save(cruce)
+            def torneoRegistracion = new TorneoRegistracion()
+            torneoRegistracion.validate()
+            controller.save(torneoRegistracion)
 
         then:"The create view is rendered again with the correct model"
-            model.cruceInstance!= null
+            model.torneoRegistracionInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            cruce = new Cruce(params)
+            torneoRegistracion = new TorneoRegistracion(params)
 
-            controller.save(cruce)
+            controller.save(torneoRegistracion)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/cruce/show/1'
+            response.redirectedUrl == '/torneoRegistracion/show/1'
             controller.flash.message != null
-            Cruce.count() == 1
+            TorneoRegistracion.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -68,11 +68,11 @@ class CruceControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def cruce = new Cruce(params)
-            controller.show(cruce)
+            def torneoRegistracion = new TorneoRegistracion(params)
+            controller.show(torneoRegistracion)
 
         then:"A model is populated containing the domain instance"
-            model.cruceInstance == cruce
+            model.torneoRegistracionInstance == torneoRegistracion
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -84,11 +84,11 @@ class CruceControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def cruce = new Cruce(params)
-            controller.edit(cruce)
+            def torneoRegistracion = new TorneoRegistracion(params)
+            controller.edit(torneoRegistracion)
 
         then:"A model is populated containing the domain instance"
-            model.cruceInstance == cruce
+            model.torneoRegistracionInstance == torneoRegistracion
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -98,28 +98,28 @@ class CruceControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/cruce/index'
+            response.redirectedUrl == '/torneoRegistracion/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def cruce = new Cruce()
-            cruce.validate()
-            controller.update(cruce)
+            def torneoRegistracion = new TorneoRegistracion()
+            torneoRegistracion.validate()
+            controller.update(torneoRegistracion)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.cruceInstance == cruce
+            model.torneoRegistracionInstance == torneoRegistracion
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            cruce = new Cruce(params).save(flush: true)
-            controller.update(cruce)
+            torneoRegistracion = new TorneoRegistracion(params).save(flush: true)
+            controller.update(torneoRegistracion)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/cruce/show/$cruce.id"
+            response.redirectedUrl == "/torneoRegistracion/show/$torneoRegistracion.id"
             flash.message != null
     }
 
@@ -130,23 +130,23 @@ class CruceControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/cruce/index'
+            response.redirectedUrl == '/torneoRegistracion/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def cruce = new Cruce(params).save(flush: true)
+            def torneoRegistracion = new TorneoRegistracion(params).save(flush: true)
 
         then:"It exists"
-            Cruce.count() == 1
+            TorneoRegistracion.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(cruce)
+            controller.delete(torneoRegistracion)
 
         then:"The instance is deleted"
-            Cruce.count() == 0
-            response.redirectedUrl == '/cruce/index'
+            TorneoRegistracion.count() == 0
+            response.redirectedUrl == '/torneoRegistracion/index'
             flash.message != null
     }
 }

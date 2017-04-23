@@ -1,4 +1,4 @@
-package com.torneo.fifa
+package com.caseritos
 
 import grails.gorm.DetachedCriteria
 import groovy.transform.ToString

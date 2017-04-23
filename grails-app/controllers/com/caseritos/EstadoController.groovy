@@ -1,6 +1,4 @@
-package com.torneo.fifa
-
-
+package com.caseritos
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
