@@ -19,13 +19,15 @@
 			</g:if>
 			
 		<div class="fieldcontain ${hasErrors(bean: playerInstance, field: 'username', 'error')} required">
-			<label>Crear Nuevo Torneo</label>
+			<label>Mis Sanwiches</label>
 			<br/>
-			<label>Mis Torneos</label>
+			<label>Proveedores</label>
 			<br/>
-			<label>Mis Estadisticas</label>
+			<label>Usuarios</label>
 			<br/>
-			<label>Modificar Mis Datos</label>
+			<label>Facturacion</label>
+			<br/>
+			<label>Ingredientes</label>
 		</div>
 		</div>
 	</body>

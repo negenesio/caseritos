@@ -21,16 +21,36 @@
 			<g:loginControl />
 		</div>
 		<div id="grailsLogo" role="banner">
-			<a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a>
-			<g:if test="${sec.loggedInUserInfo(field:'username')}">
-				
-				<g:link controller="torneo" action="create" class="btn btn-success">Crear Nuevo Torneo</g:link>
-				<span class="btn btn-success">Mis Torneos</span>				
-				<span class="btn btn-success">Mis Estadisticas</span>
-				<g:link controller="Player" action="edit" id="${sec.loggedInUserInfo(field:'id')}" class="btn btn-success">Modificar Mis Datos</g:link>
-			</g:if>
-				
-			
+			<!-- Static navbar -->
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed navbar-left" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+							<a href="#"><asset:image style="width: 80px; height: 80px" src="logo_caseritos.jpg" alt="La Fabrica Caseros"/></a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<g:if test="${sec.loggedInUserInfo(field:'username')}">
+								%{--<li>
+									<g:link controller="player" action="edit" id="${sec.loggedInUserInfo(field:'id')}">Mi Perfil</g:link>
+									<g:link mapping="usuario_perfil" id="${sec.loggedInUserInfo(field:'id')}">Mi Perfil</g:link>
+									<a href="/player/edit/${sec.loggedInUserInfo(field:'id')}">Modificar Mis Datos</a>
+								</li>--}%
+								<li><g:link>Mis Sanwiches</g:link></li>
+								<li><g:link>Proveedores</g:link></li>
+								<li><g:link>Usuarios</g:link></li>
+								<li><g:link>Facturacion</g:link></li>
+								<li><g:link>Ingredientes</g:link></li>
+							</g:if>
+						</ul>
+					</div><!--/.nav-collapse -->
+				</div><!--/.container-fluid -->
+			</nav>
 		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>

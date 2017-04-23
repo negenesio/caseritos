@@ -1,5 +1,5 @@
 <div>
-    <h1> Confirmacion de Mail - Registro TORNEO MELI</h1>
+    <h1> Confirmacion de Mail - Registro CASERITOS SANWICHES</h1>
     <br/>
     <h2>Usuario: ${instancePlayer.username}</h2>
     <br/>

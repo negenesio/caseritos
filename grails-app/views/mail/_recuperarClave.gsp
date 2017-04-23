@@ -1,5 +1,5 @@
 <div>
-    <h1> RECUPERACION DE CLAVE - Registro TORNEO MELI</h1>
+    <h1> RECUPERACION DE CLAVE - Registro CASERITOS SANWICHES</h1>
     <br/>
     <p><h2>Usuario: ${instancePlayer.username}</h2></p>
     <p><h2>Codigo de Cambio: ${codigo}</h2></p>

@@ -71,7 +71,7 @@ class CuentaController {
 			to instancePlayer.email
 			subject "TORNEO MELI - RECUPERAR PASSWORD"
 			html g.render(template:'/mail/recuperarClave', model:[instancePlayer:instancePlayer, password:instancePlayer.password, codigo:codigo])
-			inline 'springsourceInlineImage', 'image/jpg', new File('./web-app/images/baner_torneo.png')
+			inline 'springsourceInlineImage', 'image/jpg', new File('./web-app/images/banner_caseritos.jpg')
 		}
 		log.info "[enviarNuevaCodigo] Nuevo codigo enviado al usuario:"+instancePlayer.username+". Email: "+instancePlayer.email
 	}

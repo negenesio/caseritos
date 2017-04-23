@@ -18,6 +18,7 @@ class PlayerController {
 	
 	@Secured(['ROLE_ADMIN'])
     def index(Integer max) {
+		println "el admin"
         params.max = Math.min(max ?: 10, 100)
         respond Player.list(params), model:[playerInstanceCount: Player.count()]
     }
@@ -80,7 +81,7 @@ class PlayerController {
 
 	@Secured(['permitAll'])
     def edit(Player playerInstance) {
-		
+		println "EDITAR"
 		if(playerInstance.id == springSecurityService.getCurrentUser().id){
 			respond playerInstance
 		}else{

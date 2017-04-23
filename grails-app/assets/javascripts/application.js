@@ -593,5 +593,4 @@ var waitingDialog = waitingDialog || (function ($) {
 			$dialog.modal('hide');
 		}
 	};
-
 })(jQuery);
