@@ -120,9 +120,9 @@ log4j = {
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.torneo.fifa.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.torneo.fifa.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.torneo.fifa.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.caseritos.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.caseritos.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.caseritos.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                  								['permitAll'],
 	'/index':             								['permitAll'],

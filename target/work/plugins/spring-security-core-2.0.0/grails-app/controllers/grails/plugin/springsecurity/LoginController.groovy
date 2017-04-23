@@ -18,7 +18,6 @@ import grails.converters.JSON
 
 import javax.servlet.http.HttpServletResponse
 
-import static org.springframework.http.HttpStatus.*
 import org.springframework.security.access.annotation.Secured
 import org.springframework.security.authentication.AccountExpiredException
 import org.springframework.security.authentication.CredentialsExpiredException
@@ -60,17 +59,14 @@ class LoginController {
 			
 			def mensaje = ""
 			flash.params = [error:mensaje, info:mensaje]
-			println "PARAMS 1: " +flash.params
 		}
 		def config = SpringSecurityUtils.securityConfig
 
 		if (springSecurityService.isLoggedIn()) {
-			println "PARAMS 2: "+flash.params
 			redirect uri: config.successHandler.defaultTargetUrl
 			return
 		}
 	
-		println "PARAMS 3: " +flash.params
 		String view = 'auth'
 		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
 		render view: view, model: [postUrl: postUrl,

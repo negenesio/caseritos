@@ -1,6 +1,6 @@
-import com.torneo.fifa.Role
-import com.torneo.fifa.Player
-import com.torneo.fifa.UserRole
+import com.caseritos.Player
+import com.caseritos.Role
+import com.caseritos.UserRole
 
 class BootStrap {
 
