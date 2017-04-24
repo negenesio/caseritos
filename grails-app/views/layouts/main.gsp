@@ -31,15 +31,15 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-							<a href="#"><asset:image style="width: 80px; height: 80px" src="logo_caseritos.jpg" alt="La Fabrica Caseros"/></a>
+							<a href="/caseritosV3/"><asset:image style="width: 80px; height: 80px" src="logo_caseritos.jpg" alt="La Fabrica Caseros"/></a>
 					</div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
 							<g:if test="${sec.loggedInUserInfo(field:'username')}">
 								%{--<li>
-									<g:link controller="player" action="edit" id="${sec.loggedInUserInfo(field:'id')}">Mi Perfil</g:link>
+									<g:link controller="usuario" action="edit" id="${sec.loggedInUserInfo(field:'id')}">Mi Perfil</g:link>
 									<g:link mapping="usuario_perfil" id="${sec.loggedInUserInfo(field:'id')}">Mi Perfil</g:link>
-									<a href="/player/edit/${sec.loggedInUserInfo(field:'id')}">Modificar Mis Datos</a>
+									<a href="/usuario/edit/${sec.loggedInUserInfo(field:'id')}">Modificar Mis Datos</a>
 								</li>--}%
 								<li><g:link>Mis Sanwiches</g:link></li>
 								<li><g:link>Proveedores</g:link></li>

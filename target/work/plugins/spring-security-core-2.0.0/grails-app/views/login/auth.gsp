@@ -21,7 +21,7 @@
 			<div class='message'>${flash.params.info}</div>
 		</g:if>
 		<g:if test='${flash.params.nuevoCodigo}'>
-			<div class='message'><g:link controller="player" action="crearNuevoCodigo">Enviar Nuevo Codigo</g:link></div>
+			<div class='message'><g:link controller="usuario" action="crearNuevoCodigo">Enviar Nuevo Codigo</g:link></div>
 		</g:if>
 		<g:if test='${flash.params.nuevaClave}'>
 			<div class='message'><g:link controller="cuenta" action="inicioGenerarCodigoDesbloqueo">Cambiar Clave</g:link></div>
@@ -42,7 +42,7 @@
 				<input type='password' class='text_' name='j_password' id='password' required="required"/>
 				<center><input type='submit' id="submit" class="btn btn-default" value='Iniciar Sesion' onclick="checkInput();"/></center>
 				<br/>
-				<center><g:link controller="player" action="create" onclick="waitingDialog.show('Cargando...', {dialogSize: 'sm', progressType: 'success'});">Registrar nueva Cuenta</g:link></center>
+				<center><g:link controller="usuario" action="create" onclick="waitingDialog.show('Cargando...', {dialogSize: 'sm', progressType: 'success'});">Registrar nueva Cuenta</g:link></center>
 				<center><g:link controller="cuenta" action="inicioGenerarCodigoDesbloqueo" onclick="waitingDialog.show('Cargando...', {dialogSize: 'sm', progressType: 'success'});">¿Olvidaste tu Contraseña?</g:link></center>
 			</p>
 		</form>

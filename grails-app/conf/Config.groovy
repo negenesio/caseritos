@@ -53,7 +53,6 @@ grails {
 				"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
 				"mail.smtp.socketFactory.fallback":"false"]
 	}
-	
     views {
         gsp {
             encoding = 'UTF-8'
@@ -111,18 +110,18 @@ log4j = {
     appenders {
         console name: 'stdout', layout: pattern(conversionPattern: '%d{yyyy-MM-dd HH:mm:ss} %-5p [%c{2}] %m%n')
 
-        rollingFile name:'torneoAppender', file: "/Users/negenesio/Desktop/log_torneo.log", append: true, 
+        rollingFile name:'caseritosAppender', file: "log_caseritos.log", append: true,
             layout: pattern(conversionPattern: '%d{yyyy-MM-dd HH:mm:ss} %-5p [%c{2}] %m%n')
     }
 
-    info torneoAppender:'torneo', additivity:false
+    info caseritosAppender:'caseritos', additivity:false
 }
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.torneo.fifa.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.torneo.fifa.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.torneo.fifa.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.caseritos.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.caseritos.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.caseritos.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                  								['permitAll'],
 	'/index':             								['permitAll'],
@@ -133,11 +132,11 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/images/**':      								['permitAll'],
 	'/**/favicon.ico':    								['permitAll'],
 	'/dbconsole/**':  	  								['permitAll'],
-	'/player/confirm/**': 								['permitAll'],
-	'/player/crearNuevoCodigo/**':						['permitAll'],
-	'/player/indexPlayer':								['IS_AUTHENTICATED_FULLY'],
-	'/player/indexPlayer/**':							['IS_AUTHENTICATED_FULLY'],
+	'/usuario/confirm/**': 								['permitAll'],
+	'/usuario/crearNuevoCodigo/**':						['permitAll'],
+	'/usuario/indexUsuario':								['IS_AUTHENTICATED_FULLY'],
+	'/usuario/indexUsuario/**':							['IS_AUTHENTICATED_FULLY'],
 	'/cuenta/**':										['permitAll']
 ]
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/player/indexPlayer"
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/usuario/indexUsuario"
 
