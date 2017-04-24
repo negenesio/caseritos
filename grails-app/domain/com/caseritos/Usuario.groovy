@@ -1,6 +1,6 @@
 package com.caseritos
 
-class Player extends User{
+class Usuario extends User{
 	
 	String nombre
 	String apellido

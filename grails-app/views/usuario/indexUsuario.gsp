@@ -1,4 +1,4 @@
-<%@ page import="com.torneo.fifa.Player" %>
+<%@ page import="com.caseritos.Usuario" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,7 +6,7 @@
 		<title>Principal</title>
 	</head>
 	<body>
-		<div id="edit-player" class="content scaffold-edit" role="main">
+		<div id="edit-usuario" class="content scaffold-edit" role="main">
 			<h1>Mis Acciones</h1>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
@@ -18,7 +18,7 @@
 				<div class="message" role="status">${flash.params.info}</div>
 			</g:if>
 			
-		<div class="fieldcontain ${hasErrors(bean: playerInstance, field: 'username', 'error')} required">
+		<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'username', 'error')} required">
 			<label>Mis Sanwiches</label>
 			<br/>
 			<label>Proveedores</label>

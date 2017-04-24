@@ -132,11 +132,11 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/images/**':      								['permitAll'],
 	'/**/favicon.ico':    								['permitAll'],
 	'/dbconsole/**':  	  								['permitAll'],
-	'/player/confirm/**': 								['permitAll'],
-	'/player/crearNuevoCodigo/**':						['permitAll'],
-	'/player/indexPlayer':								['IS_AUTHENTICATED_FULLY'],
-	'/player/indexPlayer/**':							['IS_AUTHENTICATED_FULLY'],
+	'/usuario/confirm/**': 								['permitAll'],
+	'/usuario/crearNuevoCodigo/**':						['permitAll'],
+	'/usuario/indexUsuario':								['IS_AUTHENTICATED_FULLY'],
+	'/usuario/indexUsuario/**':							['IS_AUTHENTICATED_FULLY'],
 	'/cuenta/**':										['permitAll']
 ]
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/player/indexPlayer"
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/usuario/indexUsuario"
 

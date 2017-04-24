@@ -6,7 +6,7 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-        name usuario_perfil: "/usuario/perfil/$id"(controller: "player", parseRequest: true){
+        name usuario_perfil: "/usuario/perfil/$id"(controller: "usuario", parseRequest: true){
             action = [GET: "show"]
         }
 

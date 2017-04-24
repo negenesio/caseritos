@@ -21,7 +21,7 @@
 			<div class='message'>${params.info}</div>
 		</g:if>
 
-		<form action='nuevoCodigo' controller="player" method='POST' class='cssform' autocomplete='off'>
+		<form action='nuevoCodigo' controller="usuario" method='POST' class='cssform' autocomplete='off'>
 		
 			<p>
 				<label for='email'>Ingrese su email:</label>

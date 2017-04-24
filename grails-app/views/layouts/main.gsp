@@ -37,9 +37,9 @@
 						<ul class="nav navbar-nav">
 							<g:if test="${sec.loggedInUserInfo(field:'username')}">
 								%{--<li>
-									<g:link controller="player" action="edit" id="${sec.loggedInUserInfo(field:'id')}">Mi Perfil</g:link>
+									<g:link controller="usuario" action="edit" id="${sec.loggedInUserInfo(field:'id')}">Mi Perfil</g:link>
 									<g:link mapping="usuario_perfil" id="${sec.loggedInUserInfo(field:'id')}">Mi Perfil</g:link>
-									<a href="/player/edit/${sec.loggedInUserInfo(field:'id')}">Modificar Mis Datos</a>
+									<a href="/usuario/edit/${sec.loggedInUserInfo(field:'id')}">Modificar Mis Datos</a>
 								</li>--}%
 								<li><g:link>Mis Sanwiches</g:link></li>
 								<li><g:link>Proveedores</g:link></li>
