@@ -53,7 +53,6 @@ grails {
 				"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
 				"mail.smtp.socketFactory.fallback":"false"]
 	}
-	
     views {
         gsp {
             encoding = 'UTF-8'
@@ -111,11 +110,11 @@ log4j = {
     appenders {
         console name: 'stdout', layout: pattern(conversionPattern: '%d{yyyy-MM-dd HH:mm:ss} %-5p [%c{2}] %m%n')
 
-        rollingFile name:'torneoAppender', file: "/Users/negenesio/Desktop/log_torneo.log", append: true, 
+        rollingFile name:'caseritosAppender', file: "log_caseritos.log", append: true,
             layout: pattern(conversionPattern: '%d{yyyy-MM-dd HH:mm:ss} %-5p [%c{2}] %m%n')
     }
 
-    info torneoAppender:'torneo', additivity:false
+    info caseritosAppender:'caseritos', additivity:false
 }
 
 

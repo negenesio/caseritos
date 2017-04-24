@@ -1,5 +1,8 @@
 package com.caseritos
 
+import org.apache.commons.logging.Log
+import org.apache.commons.logging.LogFactory
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
@@ -9,7 +12,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class EstadoController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+    private static Log log = LogFactory.getLog("caseritos."+EstadoController.class.getName())
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Estado.list(params), model:[estadoInstanceCount: Estado.count()]

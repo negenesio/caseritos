@@ -31,7 +31,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-							<a href="#"><asset:image style="width: 80px; height: 80px" src="logo_caseritos.jpg" alt="La Fabrica Caseros"/></a>
+							<a href="/caseritosV3/"><asset:image style="width: 80px; height: 80px" src="logo_caseritos.jpg" alt="La Fabrica Caseros"/></a>
 					</div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">

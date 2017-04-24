@@ -15,6 +15,8 @@
 package grails.plugin.springsecurity
 
 import grails.converters.JSON
+import org.apache.commons.logging.Log
+import org.apache.commons.logging.LogFactory
 
 import javax.servlet.http.HttpServletResponse
 
@@ -28,7 +30,7 @@ import org.springframework.security.web.WebAttributes
 
 @Secured('permitAll')
 class LoginController {
-
+	private static Log log = LogFactory.getLog("caseritos."+LoginController.class.getName())
 	/**
 	 * Dependency injection for the authenticationTrustResolver.
 	 */
@@ -111,36 +113,33 @@ class LoginController {
 
 		String msg = ''
 		def exception = session[WebAttributes.AUTHENTICATION_EXCEPTION]
-		println"SESSION: "+session
 		if (exception) {
 			if (exception instanceof AccountExpiredException) {
-				println "Usuario Expirada"
+				log.error "[authfail] El usuario se encuentra expirado."
 				msg = g.message(code: "springSecurity.errors.login.expired")
 			}
 			else if (exception instanceof CredentialsExpiredException) {
 				def mensaje = 'Debe realizar un cambio de Contraseña.'
 				flash.params = [error:mensaje, nuevoCodigo:"si"]
-				println "Clave Expirada"
+				log.error "[authfail] El usuario posee una contraseña expirada."
 				redirect action:"auth", controller:"login"
 				return
 			}
 			else if (exception instanceof DisabledException) {
 				def mensaje = 'El usuario se encuentra desabilitado, Verifique su email para activar su cuenta o Solicite un nuevo Codigo'
 				flash.params = [error:mensaje, nuevoCodigo:"si"]
-				println "Usuario Desactivado"
+				log.error "[authfail] El usuario se encuentra desactivado."
 				redirect action:"auth", controller:"login"
 				return
 			}
 			else if (exception instanceof LockedException) {
-				println "Usuario Bloqueado"
 				msg = g.message(code: "springSecurity.errors.login.locked")
-				println "Usuario Bloqueado"
+				log.error "[authfail] El usuario se encuentra bloqueado."
 			}
 			else {
-				println "Login Incorrecto"
 				def mensaje = 'Login incorrecto. Verifique sus credenciales.'
 				flash.params = [error:mensaje]
-				println "Login Incorrecto"
+				log.error "[authfail] Usuario y/o Contraseñas incorrectos."
 				redirect action:"auth", controller:"login"					
 				return
 			}
@@ -152,8 +151,8 @@ class LoginController {
 		else {
 			def mensaje = 'Login incorrecto. Verifique sus credenciales.'
 			flash.params = [error:mensaje]
-			println "Login Incorrecto"
 			redirect action:"auth", controller:"login"
+			log.error "[authfail] Usuario y/o Contraseñas incorrectos."
 			return
 		}
 	}

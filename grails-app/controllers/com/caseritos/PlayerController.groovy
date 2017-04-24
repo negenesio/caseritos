@@ -9,7 +9,7 @@ import grails.transaction.Transactional
 
 class PlayerController {
 	
-	private static Log log = LogFactory.getLog("torneo."+PlayerController.class.getName())
+	private static Log log = LogFactory.getLog("caseritos."+PlayerController.class.getName())
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	def mailService
 	def springSecurityService
@@ -34,7 +34,7 @@ class PlayerController {
 		if(playerInstance.id == springSecurityService.getCurrentUser().id){
 			respond playerInstance
 		}else{
-			flash.params = [error:"No te pases de vivo... no puedes VER el usuario de otro."]
+			flash.params = [error:"No tienes permisos suficientes para modificar la cuenta de otro usuario."]
 			redirect action:"indexPlayer"
 		}
     }
@@ -152,10 +152,11 @@ class PlayerController {
 	def enviarCodigo(Player instancePlayer) {
 		mailService.sendMail {
 			multipart true
-			to instancePlayer.email
-			subject "TORNEO MELI - Codigo de Confirmacion de Cuenta"			
+			to instancePlayer.email.toString()
+			from "torneo.meli.academy@gmail.com"
+			subject "SANWICHES CASERITOS - Codigo de Confirmacion de Cuenta"
 			html g.render(template:'/mail/template', model:[instancePlayer:instancePlayer])
-			inline 'springsourceInlineImage', 'image/jpg', new File('./web-app/images/baner_torneo.png')
+			inline 'springsourceInlineImage', 'image/jpg', new File('./grails-app/assets/images/banner_caseritos.jpg')
 		}
 	
 		log.info "[enviarCodigo] Codigo de Confirmacion enviado correctamente: "+ instancePlayer.email+". Token: "+instancePlayer.confirmCode
@@ -172,16 +173,15 @@ class PlayerController {
 			log.error "[confirm] El usuario se encuentra deshabilitado, ID: "+id
 			def mensaje = 'El usuario se encuentra desabilitado, Verifique su email para activar su cuenta o Solicite un nuevo Codigo'
 			flash.params = [error:mensaje, nuevoCodigo:"si"]
+
 			redirect action:"auth", controller:"login"
-			return
 		}
 
 		if(instancePlayer.enabled){
 			def mensaje = 'La cuenta ya se encuentra habilitada.'
 			flash.params = [error:mensaje]
-			redirect action:"auth", controller:"login"
 			log.error "[confirm] El usuario ya se encontraba habilitado, ID: "+id
-			return
+			redirect action:"auth", controller:"login"
 		}
 		
 		if(!instancePlayer.enabled){
@@ -191,14 +191,14 @@ class PlayerController {
 				def mensaje = 'Contactese con un administrador, error al Confirmar su cuenta.'
 				flash.params = [error:mensaje]
 				log.error "[confirm] ERROR critico al intentar habilitar el usuario, ID: "+id
+
 				redirect action:"auth", controller:"login"
-				return
 			} else{
 				def mensaje = 'Usuario Activado exitosamente.'
 				flash.params = [info:mensaje]
-				redirect action:"auth", controller:"login"
 				log.info "[confirm] Usuario Habilitado exitosamente, ID: "+id
-				return
+
+				redirect action:"auth", controller:"login"
 			}
 		}
 	}
@@ -219,31 +219,31 @@ class PlayerController {
 			def mensaje = "El email ingresado se encuentra registrado."
 			log.error "[nuevoCodigo] El Email ingresado no se encuentra registrado: "+params.email
 			flash.params = [error:mensaje]
-			redirect action:"auth", controller:"login"
-			return
-		} 
+
+				redirect action:"auth", controller:"login"
+		}
 		if(!instancePlayer.enabled){
 			instancePlayer.confirmCode = UUID.randomUUID().toString()
 			if (!instancePlayer.save(flush: true)) {
 				log.error "[nuevoCodigo] ERROR critico al intentar guardar el nuevo codigo. Email: "+params.email+". Usuario: "+instancePlayer.username
 				def mensaje = 'Contactese con un administrador, error al Confirmar su cuenta.'
 				flash.params = [error:mensaje]
+
 				redirect action:"auth", controller:"login"
-				return
 			} else {
 				enviarCodigo(instancePlayer)
 				log.info "[nuevoCodigo] Nuevo cofigo generado y enviado exitosamente. Email: "+params.email+". Usuario: "+instancePlayer.username
 				def mensaje = 'Nuevo cofigo de confirmacion Enviado correctamente.'
 				flash.params = [info:mensaje]
+
 				redirect action:"auth", controller:"login"
-				return
 			}
 		}else{
 			log.error "[nuevoCodigo] El usuario ya se encuentra registrado. Usuario: "+instancePlayer.username
 			def mensaje = 'El usuario ya se encuentra Activado no es necesario el codigo.'
 			flash.params = [info:mensaje]
+
 			redirect action:"auth", controller:"login"
-			return
 		}
 	}
 	

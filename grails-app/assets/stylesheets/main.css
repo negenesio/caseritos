@@ -16,6 +16,10 @@
 	-khtml-box-shadow: 2px 2px 2px #000000;
 	box-shadow: 2px 2px 2px #000000;
 }
+.informativo {
+  font-size: 12px;
+  color: blue;
+}
 	#login .inner .fheader {
 	padding: 18px 26px 14px 26px;
 	background-color: #498bbb;
@@ -59,11 +63,12 @@
 }
 #login .inner .login_message {
 	padding: 6px 25px 20px 25px;
-	color: #c33;
+	color: #c51010;
+    font-weight: bold;
 }
 .login_message {
 	padding: 6px 25px 20px 25px;
-	color: #c33;
+	color: #c51010;
 }
 #login .inner .text_ {
 	width: 140px;
@@ -7182,7 +7187,7 @@ fieldset.embedded legend {
 .message {
 	background: #f3f3ff;
 	border: 1px solid #b2d1ff;
-	color: #006dba;
+	color: #2000ff;
 	   -moz-box-shadow: 0 0 0.25em #b2d1ff;
 	-webkit-box-shadow: 0 0 0.25em #b2d1ff;
 	        box-shadow: 0 0 0.25em #b2d1ff;
